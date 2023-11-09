@@ -2,12 +2,13 @@
 Welcome to the Bookshelf API documentation! This API is designed to help you manage your virtual bookshelf effortlessly. Whether you're a book enthusiast or building a library management system, these endpoints provide the functionality you need to interact with your book collection.
 
 ## API Endpoints
+
+
 ### 1. Add a New Book
-Endpoint: /books/add
+Endpoint: /books
 Method: POST
 Request Body:
-json
-Copy code
+
 {
   "title": "The Art of Programming",
   "author": "John Doe",
@@ -17,8 +18,12 @@ Copy code
 Success (200 OK):
 
 {
-  "message": "Book added successfully",
-  "book_id": 123
+  "message": "Book added",
+  "book": {
+      "id": 1,
+      "title": "The Art of Programming",
+      "author": "John Doe"
+    }
 }
 ## Error:
 
@@ -29,18 +34,20 @@ Success (200 OK):
 Endpoint: /books
 Method: GET
 ## Response:
-## Success (200 OK):
+Success (200 OK):
 {
   "books": [
     {
       "id": 1,
       "title": "The Art of Programming",
-      "author": "John Doe"
+      "author": "John Doe",
+      "summary": "A comprehensive guide to programming principles and practices."
     },
     {
       "id": 2,
       "title": "Design Patterns",
-      "author": "Jane Smith"
+      "author": "Jane Smith",
+      "summary": "A comprehensive guide to programming principles and practices of Design Patterns."
     },
     // ... other books
   ]
@@ -49,20 +56,23 @@ Method: GET
 Endpoint: /books/{id}
 Method: GET
 ## Response:
-## Success (200 OK):
+
+ Success (200 OK):
+ 
 {
-  "id": 123,
+  "id": 1,
   "title": "The Art of Programming",
   "author": "John Doe",
   "summary": "A comprehensive guide to programming principles and practices."
 }
-## Error:
+
+Error:
 
 {
   "error": "Book not found"
 }
 ### 4. Update a Book's Details
-Endpoint: /books/update/{id}
+Endpoint: /books/{id}
 Method: PUT
 Request Body:
 
@@ -73,26 +83,41 @@ Request Body:
   "summary": "Updated summary."
 }
 ## Response:
-## Success (200 OK):
+
+ Success (200 OK):
+ 
 json
 
 {
-  "message": "Book details updated successfully"
+  "message": "Book details updated successfully",
+  data:{
+  "title": "Updated Title",
+  "author": "Updated Author",
+  "summary": "Updated summary."
 }
-## Error:
+}
+
+ Error:
 
 {
   "error": "Book not found"
 }
  ### 5. Delete a Book
-Endpoint: /books/delete/{id}
+Endpoint: /books/{id}
 Method: DELETE
 Response:
-## Success (200 OK):
+Success (200 OK):
+
 {
-  "message": "Book deleted successfully"
+  "message": "Book deleted successfully",
+  data:{
+  "title": "deleted Title",
+  "author": "deleted Author",
+  "summary": "deleted summary."
 }
-## Error:
+}
+
+ Error:
 {
   "error": "Book not found"
 }
@@ -105,7 +130,6 @@ Response:
 git clone https://github.com/your/BrewApps_Backend_Assignment.git
 
 
-cd repository
 Install Dependencies:
 
 
